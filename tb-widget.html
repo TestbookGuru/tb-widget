@@ -5,6 +5,13 @@
 <title>Testbook Trial Widget</title>
 
 <style>
+/* Global Reset to Stop Input Overflow */
+*,
+*:before,
+*:after {
+  box-sizing: border-box !important;
+}
+
 /* Testbook Theme Styling */
 body {
   margin: 0;
@@ -13,7 +20,9 @@ body {
   font-family: Arial, sans-serif;
 }
 
+/* MAIN CONTAINER */
 .tb-widget-container {
+  width: 100%;
   max-width: 600px;
   margin: 0 auto;
   padding: 22px 22px 28px;
@@ -23,12 +32,14 @@ body {
   border: 1px solid rgba(255,255,255,0.12);
 }
 
+/* Heading */
 .tb-widget-container h2 {
   font-size: 24px;
   font-weight: 800;
   margin-top: 0;
   color: #1F7AFC;
 }
+
 .tb-highlight {
   color: #6BB4FF;
   font-weight: 700;
@@ -42,15 +53,18 @@ body {
   border-radius: 50px;
   overflow: hidden;
 }
+
 .tb-slots-fill {
   height: 10px;
   width: 0%;
-  background: linear-gradient(90deg,#1F7AFC,#6BB4FF,#1F7AFC);
-  transition: width .4s ease;
+  background: linear-gradient(90deg, #1F7AFC, #6BB4FF, #1F7AFC);
+  transition: width 0.4s ease;
 }
 
+/* Input Fields */
 input {
   width: 100%;
+  max-width: 100%;
   padding: 12px;
   border-radius: 10px;
   border: 1px solid rgba(255,255,255,0.15);
@@ -60,19 +74,26 @@ input {
   font-size: 15px;
 }
 
+input::placeholder {
+  color: #afc4e2;
+}
+
+/* CTA Button */
 button {
   width: 100%;
   padding: 14px;
   border-radius: 99px;
   border: none;
-  background: linear-gradient(90deg,#1F7AFC,#6BB4FF);
+  background: linear-gradient(90deg, #1F7AFC, #6BB4FF);
   color: #0A1931;
   font-size: 16px;
   font-weight: 800;
   cursor: pointer;
   margin-top: 5px;
   letter-spacing: 0.5px;
+  transition: 0.2s ease;
 }
+
 button:hover {
   box-shadow: 0 6px 16px rgba(31,122,252,0.45);
   transform: translateY(-2px);
@@ -84,9 +105,12 @@ button:hover {
 
 <div class="tb-widget-container">
 
-<h2>Access Your 1-Day Testbook Banking SuperCoaching Trial</h2>
-<p>For <span class="tb-highlight">IBPS RRB PO</span> –  
-Only <span id="tb-slots-left">50</span> slots available this week.</p>
+<h2>Access Your 1-Day Trial Banking Exam Coaching</h2>
+
+<p>
+  For <span class="tb-highlight">IBPS RRB PO</span> –  
+  Only <span id="tb-slots-left">50</span> slots available this week.
+</p>
 
 <ul>
   <li>✔ Access 375+ Exams Testbook SuperCoaching</li>
@@ -97,10 +121,11 @@ Only <span id="tb-slots-left">50</span> slots available this week.</p>
 
 <!-- Slots -->
 <div style="margin-top:12px;">
-  <div style="display:flex;justify-content:space-between;font-size:14px;color:#cfe0ff;">
+  <div style="display:flex; justify-content:space-between; font-size:14px; color:#cfe0ff;">
     <span>Slots Filling Fast</span>
     <span id="tb-slots-label">50/50 Left</span>
   </div>
+
   <div class="tb-slots-bar">
     <div class="tb-slots-fill" id="tb-slots-fill"></div>
   </div>
@@ -121,7 +146,7 @@ const TOTAL = 50;
 let left = TOTAL - Math.floor(Math.random() * 12);
 document.getElementById('tb-slots-left').textContent = left;
 document.getElementById('tb-slots-label').textContent = `${left}/${TOTAL} Left`;
-document.getElementById('tb-slots-fill').style.width = ((TOTAL-left)/TOTAL)*100 + "%";
+document.getElementById('tb-slots-fill').style.width = ((TOTAL-left)/TOTAL) * 100 + "%";
 
 // Submit + Redirect
 document.getElementById("tbForm").addEventListener("submit", async function(e){
@@ -142,7 +167,6 @@ document.getElementById("tbForm").addEventListener("submit", async function(e){
     body: JSON.stringify(data)
   });
 
-  // Force redirect out of iframe
   window.top.location.href =
     "https://testbook.com/super-pass-live-coaching?utm_source=Website&utm_medium=WebsiteOrganic&utm_campaign=SEO";
 });
