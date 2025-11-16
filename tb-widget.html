@@ -5,36 +5,36 @@
 <title>Testbook Trial Widget</title>
 
 <style>
-/* Global Reset to Stop Input Overflow */
+/* Global box sizing */
 *,
-*:before,
-*:after {
-  box-sizing: border-box !important;
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* Testbook Theme Styling */
 body {
   margin: 0;
-  padding: 0;
-  background: #0A1931;
+  padding: 20px 0;
+  background: transparent; /* FIX: remove big dark background */
   font-family: Arial, sans-serif;
 }
 
-/* MAIN CONTAINER */
+/* MAIN COMPACT WIDGET CARD */
 .tb-widget-container {
   width: 100%;
-  max-width: 600px;
+  max-width: 480px;   /* FIX: previously 600px → too big */
   margin: 0 auto;
-  padding: 22px 22px 28px;
+  padding: 20px 22px;
   background: #0A1931;
   color: #fff;
   border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 }
 
 /* Heading */
 .tb-widget-container h2 {
-  font-size: 24px;
+  font-size: 20px; /* FIX: smaller heading */
   font-weight: 800;
   margin-top: 0;
   color: #1F7AFC;
@@ -45,58 +45,45 @@ body {
   font-weight: 700;
 }
 
-/* Slots Bar */
+/* Progress bar */
 .tb-slots-bar {
   width: 100%;
-  height: 10px;
+  height: 8px;
   background: rgba(255,255,255,0.15);
   border-radius: 50px;
   overflow: hidden;
 }
 
 .tb-slots-fill {
-  height: 10px;
+  height: 8px;
   width: 0%;
-  background: linear-gradient(90deg, #1F7AFC, #6BB4FF, #1F7AFC);
-  transition: width 0.4s ease;
+  background: linear-gradient(90deg,#1F7AFC,#6BB4FF);
+  transition: width .4s ease;
 }
 
-/* Input Fields */
+/* Inputs */
 input {
   width: 100%;
-  max-width: 100%;
-  padding: 12px;
-  border-radius: 10px;
+  padding: 10px;
+  border-radius: 8px;
   border: 1px solid rgba(255,255,255,0.15);
   background: rgba(255,255,255,0.08);
   color: #fff;
-  margin-bottom: 12px;
-  font-size: 15px;
+  margin-bottom: 10px;
+  font-size: 14px; /* smaller input */
 }
 
-input::placeholder {
-  color: #afc4e2;
-}
-
-/* CTA Button */
+/* Button */
 button {
   width: 100%;
-  padding: 14px;
-  border-radius: 99px;
+  padding: 12px;
+  border-radius: 50px;
   border: none;
-  background: linear-gradient(90deg, #1F7AFC, #6BB4FF);
+  background: linear-gradient(90deg,#1F7AFC,#6BB4FF);
   color: #0A1931;
-  font-size: 16px;
-  font-weight: 800;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
-  margin-top: 5px;
-  letter-spacing: 0.5px;
-  transition: 0.2s ease;
-}
-
-button:hover {
-  box-shadow: 0 6px 16px rgba(31,122,252,0.45);
-  transform: translateY(-2px);
 }
 </style>
 
@@ -105,14 +92,14 @@ button:hover {
 
 <div class="tb-widget-container">
 
-<h2>Access Your 1-Day Trial Banking Exam Coaching</h2>
+<h2>Access Your 1-Day Testbook Banking SuperCoaching Trial</h2>
 
 <p>
-  For <span class="tb-highlight">IBPS RRB PO</span> –  
-  Only <span id="tb-slots-left">50</span> slots available this week.
+  For <span class="tb-highlight">IBPS RRB PO</span> – Only 
+  <span id="tb-slots-left">50</span> slots available this week.
 </p>
 
-<ul>
+<ul style="font-size:14px; line-height:20px; padding-left:18px;">
   <li>✔ Access 375+ Exams Testbook SuperCoaching</li>
   <li>✔ Live Q&A Session Included</li>
   <li>✔ Guided Exam Learning Hour</li>
@@ -120,8 +107,8 @@ button:hover {
 </ul>
 
 <!-- Slots -->
-<div style="margin-top:12px;">
-  <div style="display:flex; justify-content:space-between; font-size:14px; color:#cfe0ff;">
+<div style="margin-top:10px;">
+  <div style="display:flex; justify-content:space-between; font-size:12px; color:#cfe0ff;">
     <span>Slots Filling Fast</span>
     <span id="tb-slots-label">50/50 Left</span>
   </div>
@@ -131,8 +118,8 @@ button:hover {
   </div>
 </div>
 
-<!-- FORM -->
-<form id="tbForm" style="margin-top:18px;">
+<!-- Form -->
+<form id="tbForm" style="margin-top:14px;">
   <input id="tbName" type="text" placeholder="Full Name" required>
   <input id="tbPhone" type="tel" placeholder="Mobile Number" required>
   <button type="submit" id="tb-submit-btn">Claim Your 1-Day Trial</button>
@@ -141,15 +128,15 @@ button:hover {
 </div>
 
 <script>
-// Slot urgency
+// Slots
 const TOTAL = 50;
 let left = TOTAL - Math.floor(Math.random() * 12);
-document.getElementById('tb-slots-left').textContent = left;
-document.getElementById('tb-slots-label').textContent = `${left}/${TOTAL} Left`;
-document.getElementById('tb-slots-fill').style.width = ((TOTAL-left)/TOTAL) * 100 + "%";
+document.getElementById("tb-slots-left").textContent = left;
+document.getElementById("tb-slots-label").textContent = `${left}/${TOTAL} Left`;
+document.getElementById("tb-slots-fill").style.width = ((TOTAL-left)/TOTAL)*100 + "%";
 
-// Submit + Redirect
-document.getElementById("tbForm").addEventListener("submit", async function(e){
+// Submit
+document.getElementById("tbForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const btn = document.getElementById("tb-submit-btn");
