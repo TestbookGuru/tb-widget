@@ -6,45 +6,42 @@
   <title>Railway Books Widget</title>
 
   <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: transparent;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
     .tb-railway-books-widget,
     .tb-railway-books-widget * {
       box-sizing: border-box;
     }
 
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
     .tb-railway-books-widget {
       width: 100%;
       max-width: 1040px;
-      height: 300px;
-      margin: 0 auto;
-      padding: 14px 16px;
+      margin: 24px auto;
+      padding: 18px;
       border: 1px solid #e8eef7;
       border-radius: 22px;
       background: linear-gradient(135deg, #f7fbff 0%, #ffffff 48%, #fff7ed 100%);
-      box-shadow: 0 8px 22px rgba(17, 24, 39, 0.08);
+      box-shadow: 0 10px 28px rgba(17, 24, 39, 0.08);
+      font-family: Arial, Helvetica, sans-serif;
       overflow: hidden;
     }
 
     .tb-rbw-head {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 10px;
+      gap: 16px;
+      margin-bottom: 16px;
     }
 
     .tb-rbw-kicker {
       display: inline-flex;
-      padding: 4px 10px;
-      margin-bottom: 6px;
+      padding: 5px 11px;
+      margin-bottom: 8px;
       border-radius: 999px;
       background: #eaf8ff;
       color: #0096c7;
@@ -53,24 +50,24 @@
     }
 
     .tb-rbw-head h3 {
-      margin: 0 0 4px;
+      margin: 0 0 6px;
       color: #111827;
-      font-size: 22px;
-      line-height: 1.15;
+      font-size: 24px;
+      line-height: 1.25;
     }
 
     .tb-rbw-head p {
-      max-width: 760px;
+      max-width: 720px;
       margin: 0;
       color: #4b5563;
       font-size: 14px;
-      line-height: 1.35;
+      line-height: 1.5;
     }
 
     .tb-rbw-view {
       flex: 0 0 auto;
       align-self: flex-start;
-      padding: 10px 16px;
+      padding: 10px 15px;
       border-radius: 999px;
       background: #00aeef;
       color: #ffffff;
@@ -88,13 +85,12 @@
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior-x: contain;
-      padding: 4px 2px 10px;
-      height: 198px;
+      padding: 4px 2px 16px;
       scrollbar-width: thin;
     }
 
     .tb-rbw-scroller::-webkit-scrollbar {
-      height: 6px;
+      height: 7px;
     }
 
     .tb-rbw-scroller::-webkit-scrollbar-track {
@@ -108,14 +104,13 @@
     }
 
     .tb-rbw-card {
-      flex: 0 0 184px;
-      height: 176px;
+      flex: 0 0 214px;
       scroll-snap-align: start;
       background: #ffffff;
       border: 1px solid #edf1f7;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 6px 16px rgba(17, 24, 39, 0.08);
+      box-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
     }
 
     .tb-rbw-thumb {
@@ -123,8 +118,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 124px;
-      padding: 8px;
+      height: 218px;
+      padding: 12px;
       background: #f8fafc;
       text-decoration: none;
       overflow: hidden;
@@ -144,8 +139,8 @@
 
     .tb-rbw-discount {
       position: absolute;
-      top: 9px;
-      left: 9px;
+      top: 10px;
+      left: 10px;
       z-index: 2;
       padding: 5px 8px;
       border-radius: 999px;
@@ -158,104 +153,165 @@
     }
 
     .tb-rbw-info {
-      padding: 8px 9px 9px;
+      padding: 12px;
     }
 
     .tb-rbw-info h4 {
-      margin: 0;
+      min-height: 42px;
+      margin: 0 0 5px;
       color: #111827;
-      font-size: 12px;
-      line-height: 1.25;
-      min-height: 30px;
+      font-size: 14px;
+      line-height: 1.35;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
 
-    .tb-rbw-info p,
-    .tb-rbw-price,
-    .tb-rbw-btn,
-    .tb-rbw-note {
-      display: none;
+    .tb-rbw-info p {
+      min-height: 34px;
+      margin: 0 0 9px;
+      color: #6b7280;
+      font-size: 12px;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
+    .tb-rbw-price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 11px;
+    }
+
+    .tb-rbw-price del {
+      color: #9ca3af;
+      font-size: 13px;
+    }
+
+    .tb-rbw-price b {
+      color: #111827;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .tb-rbw-btn {
+      display: block;
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: #00aeef;
+      color: #ffffff;
+      text-align: center;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .tb-rbw-btn:hover,
     .tb-rbw-view:hover {
       background: #0096c7;
+    }
+
+    .tb-rbw-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .tb-rbw-note {
+      display: none;
+      margin: 0;
+      color: #6b7280;
+      font-size: 12px;
     }
 
     @media (max-width: 640px) {
       .tb-railway-books-widget {
         max-width: 100%;
-        height: 300px;
-        padding: 12px;
+        margin: 18px 0;
+        padding: 14px;
         border-radius: 16px;
       }
 
       .tb-rbw-head {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 8px;
+        display: block;
+        margin-bottom: 12px;
       }
 
       .tb-rbw-head h3 {
-        font-size: 18px;
-        line-height: 1.2;
+        font-size: 20px;
       }
 
       .tb-rbw-head p {
-        display: none;
+        font-size: 13px;
       }
 
       .tb-rbw-view {
-        padding: 8px 12px;
-        font-size: 12px;
+        display: inline-block;
+        margin-top: 12px;
+        padding: 9px 13px;
       }
 
       .tb-rbw-scroller {
         gap: 12px;
-        height: 213px;
-        padding-bottom: 8px;
-        margin-right: -12px;
-        padding-right: 12px;
+        padding-bottom: 12px;
+        margin-right: -14px;
+        padding-right: 14px;
       }
 
       .tb-rbw-card {
-        flex: 0 0 156px;
-        height: 190px;
+        flex-basis: 72vw;
+        max-width: 260px;
       }
 
       .tb-rbw-thumb {
-        height: 138px;
+        height: 220px;
       }
 
-      .tb-rbw-info h4 {
-        font-size: 12px;
+      .tb-rbw-note {
+        display: block;
       }
     }
   </style>
 </head>
 
 <body>
+
   <section class="tb-railway-books-widget" aria-label="Railway books by Testbook">
     <div class="tb-rbw-head">
       <div>
         <span class="tb-rbw-kicker">Railway Books</span>
         <h3>Shop Railway Exam SmartBooks</h3>
-        <p>Practice with chapterwise TCS PYQs, MCQs, smart answer keys and exam-focused books for RRB NTPC, ALP, Group D, JE and other railway exams.</p>
+        <p>
+          Practice with chapterwise TCS PYQs, MCQs, smart answer keys and exam-focused books for RRB NTPC, ALP, Group D, JE and other railway exams.
+        </p>
       </div>
 
-      <a class="tb-rbw-view" href="https://books.testbook.com/collections/railway-books" target="_blank" rel="noopener">View All</a>
+      <a class="tb-rbw-view" href="https://books.testbook.com/collections/railway-books" target="_blank" rel="noopener">
+        View All
+      </a>
     </div>
 
     <div class="tb-rbw-scroller" aria-label="Scrollable railway book products">
+
       <article class="tb-rbw-card">
-        <a class="tb-rbw-thumb" href="https://books.testbook.com/products/pragyan-yearly-current-affairs-2025-january-2024-to-december-2024-state-ssc-defence-police-railway-exams" target="_blank" rel="noopener">
+        <a class="tb-rbw-thumb" href="https://books.testbook.com/products/current-affairs-year-book-2025-state-ssc-defence-police-railway-exams" target="_blank" rel="noopener">
           <span class="tb-rbw-discount">53% OFF</span>
           <img src="https://books.testbook.com/cdn/shop/files/image.png?v=1756461215&width=533" alt="Current Affairs Year Book 2025 for Railway exams" loading="lazy">
         </a>
         <div class="tb-rbw-info">
           <h4>Current Affairs Year Book 2025</h4>
+          <p>State, SSC, Defence, Police & Railway Exams</p>
+          <div class="tb-rbw-price">
+            <del>₹450</del>
+            <b>₹211</b>
+          </div>
+          <a class="tb-rbw-btn" href="https://books.testbook.com/products/pragyan-yearly-current-affairs-2025-january-2024-to-december-2024-state-ssc-defence-police-railway-exams" target="_blank" rel="noopener">
+            Buy Now
+          </a>
         </div>
       </article>
 
@@ -266,6 +322,14 @@
         </a>
         <div class="tb-rbw-info">
           <h4>Railway All Exams SmartBook in English</h4>
+          <p>5000+ Chapterwise TCS PYQs & MCQs</p>
+          <div class="tb-rbw-price">
+            <del>₹899</del>
+            <b>₹449</b>
+          </div>
+          <a class="tb-rbw-btn" href="https://books.testbook.com/products/railway-all-exams-smartbook-english" target="_blank" rel="noopener">
+            Buy Now
+          </a>
         </div>
       </article>
 
@@ -276,6 +340,14 @@
         </a>
         <div class="tb-rbw-info">
           <h4>Railway All Exams SmartBook in Hindi</h4>
+          <p>RRB ALP, NTPC, Group D, JE & More</p>
+          <div class="tb-rbw-price">
+            <del>₹899</del>
+            <b>₹449</b>
+          </div>
+          <a class="tb-rbw-btn" href="https://books.testbook.com/products/railway-all-exams-smartbook-hindi" target="_blank" rel="noopener">
+            Buy Now
+          </a>
         </div>
       </article>
 
@@ -286,6 +358,14 @@
         </a>
         <div class="tb-rbw-info">
           <h4>Railway All Exams SmartBook in Bengali</h4>
+          <p>All-in-one railway exam preparation book</p>
+          <div class="tb-rbw-price">
+            <del>₹899</del>
+            <b>₹449</b>
+          </div>
+          <a class="tb-rbw-btn" href="https://books.testbook.com/products/railway-all-exams-smartbook-bengali" target="_blank" rel="noopener">
+            Buy Now
+          </a>
         </div>
       </article>
 
@@ -296,6 +376,14 @@
         </a>
         <div class="tb-rbw-info">
           <h4>General Science for All Railway Exams</h4>
+          <p>4000+ Chapterwise TCS PYQs & MCQs</p>
+          <div class="tb-rbw-price">
+            <del>₹799</del>
+            <b>₹367</b>
+          </div>
+          <a class="tb-rbw-btn" href="https://books.testbook.com/products/general-science-for-all-railway-exams-in-english-4000-chapterwise-tcs-pyqs-mcqs-testbook-smartbook" target="_blank" rel="noopener">
+            Buy Now
+          </a>
         </div>
       </article>
 
@@ -306,6 +394,14 @@
         </a>
         <div class="tb-rbw-info">
           <h4>General Awareness for All Railway Exams</h4>
+          <p>4000+ Chapterwise TCS PYQs & MCQs</p>
+          <div class="tb-rbw-price">
+            <del>₹799</del>
+            <b>₹367</b>
+          </div>
+          <a class="tb-rbw-btn" href="https://books.testbook.com/products/general-awareness-for-all-railway-exams-in-english-4000-chapterwise-tcs-pyqs-mcqs-testbook-smartbook" target="_blank" rel="noopener">
+            Buy Now
+          </a>
         </div>
       </article>
 
@@ -316,6 +412,14 @@
         </a>
         <div class="tb-rbw-info">
           <h4>Mathematics for All Railway Exams</h4>
+          <p>RRB ALP, NTPC, Group D, JE & More</p>
+          <div class="tb-rbw-price">
+            <del>₹799</del>
+            <b>₹459</b>
+          </div>
+          <a class="tb-rbw-btn" href="https://books.testbook.com/products/mathematics-for-all-railway-exams-in-english-4000-chapterwise-tcs-pyqs-mcqs-includes-rrb-alp-ntpc-group-d-je-more" target="_blank" rel="noopener">
+            Buy Now
+          </a>
         </div>
       </article>
 
@@ -326,6 +430,14 @@
         </a>
         <div class="tb-rbw-info">
           <h4>Reasoning for All Railway Exams</h4>
+          <p>4000+ Chapterwise TCS PYQs & MCQs</p>
+          <div class="tb-rbw-price">
+            <del>₹799</del>
+            <b>₹459</b>
+          </div>
+          <a class="tb-rbw-btn" href="https://books.testbook.com/products/reasoning-for-all-railway-exams-in-english-4000-chapterwise-tcs-pyqs-mcqs-testbook-smartbook" target="_blank" rel="noopener">
+            Buy Now
+          </a>
         </div>
       </article>
 
@@ -336,9 +448,21 @@
         </a>
         <div class="tb-rbw-info">
           <h4>Railway Exams Combo in English</h4>
+          <p>Set of 4 SmartBooks with 16,000+ PYQs</p>
+          <div class="tb-rbw-price">
+            <del>₹3,196</del>
+            <b>₹1,379</b>
+          </div>
+          <a class="tb-rbw-btn" href="https://books.testbook.com/products/railway-books-reasoning-quants-smartbook-english" target="_blank" rel="noopener">
+            Buy Now
+          </a>
         </div>
       </article>
+
     </div>
+
+    <p class="tb-rbw-note">Swipe horizontally to explore more railway books →</p>
   </section>
+
 </body>
 </html>
